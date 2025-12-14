@@ -1,0 +1,25 @@
+name: Simple CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: CI step
+        run: echo "Running CI (tests, build, etc)"
+
+  cd:
+    needs: ci
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: CD step
+        run: echo "Deploying application"
